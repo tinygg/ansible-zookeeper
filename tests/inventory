@@ -1,0 +1,4 @@
+[zookeeper-nodes]
+zookeeper01.test.com    zookeeper_id=1
+zookeeper02.test.com    zookeeper_id=2
+zookeeper03.test.com    zookeeper_id=3

@@ -1,0 +1,7 @@
+---
+- name: Zookeeper Installation
+  hosts: zookeeper-nodes
+  remote_user: root
+  gather_facts: true
+  roles:
+  - zookeeper_install

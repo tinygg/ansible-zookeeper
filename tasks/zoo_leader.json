@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Pausing the play for 20seconds to fully up the service",
+    "pause": {
+      "seconds": 20
+    }
+  },
+  {
+    "name": "checking leader",
+    "shell": "echo srvr | nc localhost 2181",
+    "register": "output"
+  },
+  {
+    "debug": {
+      "var": "output"
+    },
+    "when": "\"leader\" in output.stdout"
+  }
+]

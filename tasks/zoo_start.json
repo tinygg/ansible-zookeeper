@@ -1,0 +1,14 @@
+[
+   {
+      "name": "Start the ZooKeeper service",
+      "systemd": {
+         "name": "zookeeper.service",
+         "state": "restarted",
+         "daemon_reload": "yes",
+         "enabled": true
+      },
+      "tags": [
+         "zookeeper_service"
+      ]
+   }
+]

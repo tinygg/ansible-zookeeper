@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Checking if ZooKeeper has downloaded and unarchived",
+    "stat": {
+      "path": "{{ zookeeper_root_dir }}/apache-zookeeper-{{ zookeeper_version }}-bin"
+    },
+    "register": "dir"
+  },
+  {
+    "name": "Download Apache ZooKeeper",
+    "get_url": {
+      "url": "{{ zookeeper_mirror }}",
+      "dest": "/tmp"
+    },
+    "when": "dir.stat.exists",
+    "tags": [
+      "zookeeper_download"
+    ]
+  }
+]

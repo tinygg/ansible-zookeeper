@@ -1,0 +1,12 @@
+[
+   {
+      "name": "Delete ZooKeeper tar.gz file",
+      "file": {
+         "path": "/tmp/zookeeper-{{ zookeeper_version }}.tar.gz",
+         "state": "absent"
+      },
+      "tags": [
+         "zookeeper_cleanup"
+      ]
+   }
+]

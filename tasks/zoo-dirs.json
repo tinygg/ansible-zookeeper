@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Creating required directories for Zookeeper",
+    "file": {
+      "path": "{{ item }}",
+      "state": "directory",
+      "group": "{{ zookeeper_group }}",
+      "owner": "{{ zookeeper_user }}"
+    },
+    "with_items": [
+      "/u1/zookeeper_data/data",
+      "/u1/zookeeper_data/logs"
+    ],
+    "tags": [
+      "zoo_directory"
+    ]
+  }
+]

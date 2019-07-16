@@ -1,0 +1,15 @@
+[
+   {
+      "name": "Create symlink to ZooKeeper installation",
+      "file": {
+         "src": "{{ zookeeper_install_dir }}",
+         "dest": "{{ zookeeper_dir }}",
+         "state": "link",
+         "group": "{{ zookeeper_group }}",
+         "owner": "{{ zookeeper_user }}"
+      },
+      "tags": [
+         "zookeeper_dirs"
+      ]
+   }
+]

@@ -1,0 +1,16 @@
+[
+   {
+      "name": "Template ZooKeeper systemd service file",
+      "template": {
+         "src": "zookeeper.service.j2",
+         "dest": "/etc/systemd/system/zookeeper.service"
+      },
+      "notify": [
+         "Reload systemd",
+         "Restart ZooKeeper service"
+      ],
+      "tags": [
+         "zookeeper_service"
+      ]
+   }
+]

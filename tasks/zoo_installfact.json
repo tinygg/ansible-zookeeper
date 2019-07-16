@@ -1,0 +1,11 @@
+[
+   {
+      "name": "Set fact zookeeper_installed",
+      "set_fact": {
+         "zookeeper_installed": true
+      },
+      "tags": [
+         "zookeeper_install_fact"
+      ]
+   }
+]

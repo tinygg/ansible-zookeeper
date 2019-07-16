@@ -1,0 +1,18 @@
+---
+dependencies:
+  - NONE
+
+galaxy_info:
+  author: tinygg
+  description: Zookeeper for Ansible Role.
+  company: "NONE"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - all
+  galaxy_tags:
+    - MQ
+    - zk
+    - zookeeper

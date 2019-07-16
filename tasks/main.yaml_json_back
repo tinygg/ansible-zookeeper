@@ -1,0 +1,44 @@
+[
+  {
+    "include": "zoo_group_user.json"
+  },
+  {
+    "include": "zoo_java.json"
+  },
+  {
+    "include": "zoo-dirs.json"
+  },
+  {
+    "include": "zoo_pkg_download.json"
+  },
+  {
+    "include": "zoo_unarchive.json"
+  },
+  {
+    "include": "zoo_symlink.json"
+  },
+  {
+    "include": "zoo_cfg.json"
+  },
+  {
+    "include": "zoo_myid.json"
+  },
+  {
+    "include": "zoo_log4jrolling.json"
+  },
+  {
+    "include": "zoo_systemd.json"
+  },
+  {
+    "include": "zoo_start.json"
+  },
+  {
+    "include": "zoo_deletetar.json"
+  },
+  {
+    "include": "zoo_installfact.json"
+  },
+  {
+    "include": "zoo_leader.json"
+  }
+]

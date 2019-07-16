@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Set maximum log rollover history",
+    "replace": {
+      "dest": "{{ zookeeper_dir }}/conf/log4j.properties",
+      "regexp": "^#log4j.appender.ROLLINGFILE.MaxBackupIndex",
+      "replace": "log4j.appender.ROLLINGFILE.MaxBackupIndex"
+    },
+    "notify": [
+      "Restart ZooKeeper service"
+    ],
+    "tags": [
+      "zookeeper_config"
+    ]
+  }
+]

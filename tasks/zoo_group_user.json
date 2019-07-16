@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Create zookeeper group",
+    "group": {
+      "name": "{{ zookeeper_group }}",
+      "state": "present"
+    },
+    "tags": [
+      "zookeeper_user"
+    ]
+  },
+  {
+    "name": "Create zookeeper user",
+    "user": {
+      "name": "{{ zookeeper_user }}",
+      "group": "{{ zookeeper_group }}",
+      "state": "present",
+      "createhome": false
+    },
+    "tags": [
+      "zookeeper_group"
+    ]
+  }
+]
