@@ -15,24 +15,12 @@
   tags:
     - zookeeper_group
 
-- name: Creating required directories for Zookeeper
-  file:
-    path: "{{ item }}"
-    state: directory
-    group: '{{ zookeeper_group }}'
-    owner: '{{ zookeeper_user }}'
-  with_items:
-  - '{{ zookeeper_data_dir }}'
-  - '{{ zookeeper_datalog_dir }}'
-  tags:
-  - zoo_directory
-
 - name: Check if ZooKeeper has already been downloaded and unpacked
   stat:
     path: '{{ zookeeper_root_dir }}/apache-zookeeper-{{ zookeeper_version }}-bin'
   register: dir
 
-- name: Download Apache ZooKeeper
+- name: Download apache zooKeeper
   get_url:
     url: "{{zookeeper_mirror}}"
     dest: /tmp
@@ -40,7 +28,7 @@
   tags:
     - zookeeper_download
 
-- name: Creating required directories for Zookeeper
+- name: Creating required directories for zookeeper
   file:
     path: "{{ item }}"
     state: directory
@@ -49,41 +37,33 @@
   with_items:
   - '{{ zookeeper_data_dir }}'
   - '{{ zookeeper_datalog_dir }}'
+  - '{{ zookeeper_install_dir }}'
+  - '{{ zookeeper_log_dir }}'
   tags:
   - zoo_directory
 
-- name: Create symlink to ZooKeeper installation
+- name: unpack apache zookeeper
+  unarchive:
+    src: '/tmp/apache-zookeeper-{{ zookeeper_version }}-bin.tar.gz'
+    dest: '{{ zookeeper_root_dir }}'
+    remote_src: true
+    group: "{{ zookeeper_group }}"
+    owner: "{{ zookeeper_user }}"
+  tags:
+    - zookeeper_unpack
+
+- name: chang ownership of extracted directory
+  file:
+    dest: "{{ zookeeper_root_dir }}/apache-zookeeper-{{ zookeeper_version }}-bin"
+    group: "{{ zookeeper_group }}"
+    owner: "{{ zookeeper_user }}"
+    recurse: true
+
+- name: Create symlink to zooKeeper installation
   file:
     src: '{{ zookeeper_install_dir }}'
     dest: '{{ zookeeper_dir }}'
     state: link
-    group: '{{ zookeeper_group }}'
-    owner: '{{ zookeeper_user }}'
-  tags:
-    - zookeeper_dirs
-
-- name: Create directory for snapshot files and myid file
-  file:
-    path: '{{ zookeeper_data_dir }}'
-    state: directory
-    group: '{{ zookeeper_group }}'
-    owner: '{{ zookeeper_user }}'
-  tags:
-    - zookeeper_dirs
-
-- name: Create directory for transaction log files
-  file:
-    path: '{{ zookeeper_datalog_dir }}'
-    state: directory
-    group: '{{ zookeeper_group }}'
-    owner: '{{ zookeeper_user }}'
-  tags:
-    - zookeeper_dirs
-
-- name: Create zookeeper log directory
-  file:
-    path: '{{ zookeeper_log_dir }}'
-    state: directory
     group: '{{ zookeeper_group }}'
     owner: '{{ zookeeper_user }}'
   tags:
@@ -122,17 +102,13 @@
   template:
     src: myid.j2
     dest: '{{ zookeeper_data_dir }}/myid'
-  notify:
-    - Restart ZooKeeper service
-  tags:
-    - zookeeper_config
 
 - name: Template /etc/default
   template:
     src: default.j2
     dest: '/etc/default/zookeeper'
-  notify:
-    - Restart ZooKeeper service
+#  notify:
+#    - Restart ZooKeeper service
   tags:
     - zookeeper_config
 
@@ -142,8 +118,8 @@
     dest: '{{ zookeeper_dir }}/conf/log4j.properties'
     regexp: '^#log4j.appender.ROLLINGFILE.MaxBackupIndex'
     replace: 'log4j.appender.ROLLINGFILE.MaxBackupIndex'
-  notify:
-    - Restart ZooKeeper service
+#  notify:
+#    - Restart ZooKeeper service
   tags:
     - zookeeper_config
 
