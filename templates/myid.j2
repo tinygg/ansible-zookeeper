@@ -1,1 +1,5 @@
-{{ zookeeper_id }}
+{% for item in zookeeper_servers%}
+{% if item.host == hostvars[inventory_hostname]['ansible_ssh_host']%}
+{{item.id}}
+{% endif %}
+{% endfor %}

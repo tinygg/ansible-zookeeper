@@ -47,6 +47,10 @@ clientPort={{ zookeeper_client_port }}
 #server.1=hostname1:2888:3888
 #server.2=hostname2:2888:3888
 
-{% for host in zookeeper_servers %}
-server.{{ loop.index }}={{ host }}:{{ zookeeper_leader_port }}:{{ zookeeper_election_port }}
+{% for item in zookeeper_servers %}
+{% if False and item.host == hostvars[inventory_hostname]['ansible_ssh_host']%}
+server.{{ loop.index }}=0.0.0.0:{{ zookeeper_leader_port }}:{{ zookeeper_election_port }}
+{% else %}
+server.{{ loop.index }}={{ item.host }}:{{ zookeeper_leader_port }}:{{ zookeeper_election_port }}
+{% endif %}
 {% endfor %}
