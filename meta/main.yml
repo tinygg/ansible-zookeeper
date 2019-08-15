@@ -1,9 +1,9 @@
 ---
-dependencies:
+dependencies: []
 
 galaxy_info:
   author: tinygg
-  description: Zookeeper for Ansible Role.
+  description: ansible role zookeeper (cluster && standalone)
   company: "NONE"
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
@@ -12,6 +12,7 @@ galaxy_info:
       versions:
         - all
   galaxy_tags:
-    - MQ
     - zk
     - zookeeper
+    - cluster
+    - standalone
